@@ -53,14 +53,15 @@
     }
     &_ingredient {
         display: flex;
-        flex-flow: row nowrap;
+        flex-flow: row wrap;
         justify-content: flex-start;
         align-items: flex-start;
-        white-space: nowrap;
+        
         &--name {
             margin-right: 5px;
             font-weight: 700;
             font-family: $lato;
+            white-space: nowrap;
         }
     }
 }
