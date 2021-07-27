@@ -1,38 +1,29 @@
-@font-face {
-  font-family: 'DM Sans';
-  src: url("../../src/fonts/DM_Sans/DMSans-Bold.ttf") format('truetype');
-}
-@font-face {
-  font-family: 'Lato';
-  src: url("../../src/fonts/Lato/Lato-Regular.ttf") format('truetype'),
-       url("../../src/fonts/Lato/Lato-Bold.ttf") format('truetype');
-}
-@font-face {
-  font-family: 'Roboto';
-  src: url("../../src/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
-}
+@import 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Lato:wght@400;700&family=Roboto&display=swap';
 
+$lato: "Lato", sans-serif;
+$roboto: "Roboto", sans-serif;
+$dmsans: "DM Sans", sans-serif;
 
 html {
   color: black;
-  font-family: "Roboto", sans-serif;
+  font-family: $roboto;
 }
 
 h1 {
   color: $orange;
   font-size: clamp(30px, 1rem + 2vh, 40px);
   font-weight: 700;
-  font-family: "DM-Sans", sans-serif;
+  font-family: $dmsans;
 }
 
 h2 {
   color: black;
-  font-family: "Lato", sans-serif;
+  font-family: $lato;
   font-size: clamp(20px, 1rem + 0.5vh, 30px);
   font-weight: 400;
 }
 
 p {
   color: black;
-  font-size: clamp(12px, 1rem + 0.5vh, 16px);
+  font-size: clamp(12px, 0.8rem + 0.5vh, 14px);
 }
