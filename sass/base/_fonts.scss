@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'DM Sans';
+  src: url("../../src/fonts/DM_Sans/DMSans-Bold.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Lato';
+  src: url("../../src/fonts/Lato/Lato-Regular.ttf") format('truetype'),
+       url("../../src/fonts/Lato/Lato-Bold.ttf") format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../src/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+}
+
+
+html {
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: $orange;
+  font-size: clamp(30px, 1rem + 2vh, 40px);
+  font-weight: 700;
+  font-family: "DM-Sans", sans-serif;
+}
+
+h2 {
+  color: black;
+  font-family: "Lato", sans-serif;
+  font-size: clamp(20px, 1rem + 0.5vh, 30px);
+  font-weight: 400;
+}
+
+p {
+  color: black;
+  font-size: clamp(12px, 1rem + 0.5vh, 16px);
+}

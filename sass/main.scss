@@ -1,0 +1,15 @@
+// Common
+@import "./vendors/reset";
+@import "./utils/variables";
+@import "./base/fonts";
+@import "./base/common";
+
+// Layouts
+@import "./layouts/header";
+
+// Components
+@import "./components/search-bar";
+
+// Pages
+@import "./pages/main-page";
+@import "./pages/recipe-card";

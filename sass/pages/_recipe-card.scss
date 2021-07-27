@@ -1,0 +1,43 @@
+.recipe-card {
+    width: 100%;
+    flex: 1 1 33%;
+    height: clamp(400px, 30vh, 700px);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    border-radius: 5px;
+    overflow: hidden;
+    &_image {
+        background: $gray-dark;
+        height: 45%;
+        width: 100%;
+        content: '';
+    }
+    &_info {
+        height: 55%;
+        background: $gray-light;
+        padding: 20px;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    &_top {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+    &_time-section {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        img {
+            margin-right: clamp(5px, 1vw, 10px);
+        }
+        p {
+            font-weight: 700;
+            font-family: "Lato";
+        }
+    }
+}
