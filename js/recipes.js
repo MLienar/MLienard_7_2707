@@ -83,7 +83,7 @@ const recipes = [
                 "unit": "ml"
             },
             {
-                "ingredient": "Coulis de tomate",
+                "ingredient": "Coulis de tomates",
                 "quantity": 25,
                 "unit": "cl"
             },
@@ -160,7 +160,7 @@ const recipes = [
                 "quantity": 2
             },
             {
-                "ingredient": "Crème fraiche",
+                "ingredient": "Crème fraîche",
                 "quantity": 2,
                 "unit": "cuillères à soupe"
             },
@@ -198,7 +198,7 @@ const recipes = [
                 "quantity": "2"
             },
             {
-                "ingredient": "Crème fraiche",
+                "ingredient": "Crème fraîche",
                 "quantity": 25,
                 "unit": "cl"
             },
@@ -379,7 +379,7 @@ const recipes = [
                 "unit": "tranches"
             },
             {
-                "ingredient": "Pommes",
+                "ingredient": "Pomme",
                 "quantity": 1
             },
             {
@@ -407,7 +407,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Pommes",
+                "ingredient": "Pomme",
                 "quantity": 8
             },
             {
@@ -423,7 +423,7 @@ const recipes = [
         ],
         "time": 40,
         "description": "Éplucher les fruits et les couper en morceaux, les mettre dans une casserolle en ajoutant l'eau et le sucre vanillé. Laisser cuire 15 minutes en remuant régulièrement.",
-        "appliance": "Casserole",
+        "appliance": "Casserolle",
         "ustensils": ["couteau", "économe"]
     },
     {
@@ -459,7 +459,7 @@ const recipes = [
         ],
         "time": 40,
         "description": "Cuire les pommes de terre environ 30 minutes. Découper les échalottes finement. Durant la cuisson des pommes de terre. Préparez la vinaigrette avec l'huile d'olive et le vinaigre de cidre. Salez poivrez à discrétion. Dans un saladier, mettre le mâche. Ajouter",
-        "appliance": "Casserole",
+        "appliance": "Casserolle",
         "ustensils": ["couteau", "saladier", "cuillère en bois"]
     },
     {
@@ -567,7 +567,7 @@ const recipes = [
                 "unit": "tiges"
             },
             {
-                "ingredient": "huile d'olives",
+                "ingredient": "huile d'olive",
                 "quantity": 2,
                 "unit": "cuillère à soupe"
             }
@@ -683,7 +683,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crème fraiche",
+                "ingredient": "Crème fraîche",
                 "quantity": 200,
                 "unit": "grammes"
             },
@@ -718,7 +718,7 @@ const recipes = [
                 "quantity": 2
             },
             {
-                "ingredient": "Coulis de tomate",
+                "ingredient": "Coulis de tomates",
                 "quantity": 300,
                 "unit": "grammes"
             },
@@ -733,14 +733,14 @@ const recipes = [
                 "unit": "cl"
             },
             {
-                "ingredient": "Crème Fraiche",
+                "ingredient": "Crème Fraîche",
                 "quantity": 1,
                 "unit": "cuillères à soupe"
             }
         ],
         "time": 30,
         "description": "Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
-        "appliance": "Casserolle.",
+        "appliance": "Casserolle",
         "ustensils": ["Cuillère en bois", "louche", "couteau"]
     },
     {
@@ -906,7 +906,7 @@ const recipes = [
                 "quantity": 1
             },
             {
-                "ingredient": "Huile d'olives"
+                "ingredient": "Huile d'olive"
             },
             {
                 "ingredient": "Oignon",
@@ -982,7 +982,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Crême fraîche",
+                "ingredient": "Crème fraîche",
                 "quantity": 10,
                 "unit": "cl"
             }
@@ -1279,7 +1279,7 @@ const recipes = [
                 "unit": "grammes"
             },
             {
-                "ingredient": "Huile d'olives",
+                "ingredient": "Huile d'olive",
                 "quantity": 25,
                 "unit": "cl"
             },
@@ -1659,11 +1659,11 @@ const recipes = [
         "servings": 4,
         "ingredients": [
             {
-                "ingredient": "Bananes",
+                "ingredient": "Banane",
                 "quantity": 2
             },
             {
-                "ingredient": "Kiwis",
+                "ingredient": "Kiwi",
                 "quantity": 3
             },
             {
@@ -1701,7 +1701,7 @@ const recipes = [
                 "quantity": 6
             },
             {
-                "ingredient": "Poudre d'amendes",
+                "ingredient": "Poudre d'amandes",
                 "quantity": 500,
                 "unit": "grammes"
             },
