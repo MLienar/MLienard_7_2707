@@ -1,9 +1,12 @@
-const recipesContainer = document.querySelector("main")
 function GalleryCard(recipe) {
 
     this.ingredients = []
-    this.appliance = [ recipe.appliance ]
+    this.appliance = [ recipe.appliance.toLowerCase() ]
     this.ustensils = []
+    this.description = recipe.description
+    this.title = recipe.name
+    this.hide = false
+    this.id = 0
     
     recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient.ingredient.toLowerCase())
@@ -29,10 +32,13 @@ function GalleryCard(recipe) {
         return container
     }
 
-    const cardContainer = function () {
+    this.cardContainer = function () {
         const div = {
             type: "div",
             class: ""
+        }
+        if (this.hide) {
+            div.class = "hidden"
         }
         const card = createBlock(div)
         return card
@@ -158,7 +164,7 @@ function GalleryCard(recipe) {
     }
 
     this.buildCard = function () {
-        const card = cardContainer()
+        const card = this.cardContainer()
         const infoContainer = cardInfoPart()
         const imgContainer = cardImgPart()
         const ingredients = cardIngredients()
@@ -173,7 +179,7 @@ function GalleryCard(recipe) {
         infoContainer.appendChild(bottomPart)
         card.appendChild(imgContainer)
         card.appendChild(infoContainer)
-        recipesContainer.appendChild(card)
+        return card
     }
 }
 

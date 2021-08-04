@@ -17,6 +17,7 @@
         <div class="search_main-bar">
           <input
             type="text"
+            id="main-search"
             placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
           />
           <img src="img/search.svg" alt="magnifying glass logo" />
@@ -24,31 +25,42 @@
         <div class="search_current-tags"></div>
         <div class="dropdowns-container">
           <div class="dropdown blue">
-            <input
-              type="text"
-              class="dropdown_input"
-              id="ingredients"
-              placeholder="Ingredients"
-            />
-            <img src="img/arrow.svg" alt="downwards facing arrow" />
+            <div class="dropdown_input-container">
+              <input
+                type="text"
+                class="dropdown_input"
+                id="ingredients"
+                placeholder="Ingredients"
+              />
+              <img src="img/arrow.svg" alt="downwards facing arrow" />
+            </div>
+            <ul class="dropdown_list" id="ingredients-list">
+              <li class="dropdown_list-item">Ingrédient</li>
+            </ul>
           </div>
           <div class="dropdown green">
-            <input
-              type="text"
-              class="dropdown_input"
-              id="appareil"
-              placeholder="Appareil"
-            />
-            <img src="img/arrow.svg" alt="downwards facing arrow" />
+            <div class="dropdown_input-container">
+              <input
+                type="text"
+                class="dropdown_input"
+                id="appareil"
+                placeholder="Appareil"
+              />
+              <img src="img/arrow.svg" alt="downwards facing arrow" />
+            </div>
+            <ul class="dropdown_list hidden" id="appliances-list"></ul>
           </div>
           <div class="dropdown orange">
-            <input
-              type="text"
-              class="dropdown_input"
-              id="ustensiles"
-              placeholder="Ustensiles"
-            />
-            <img src="img/arrow.svg" alt="downwards facing arrow" />
+            <div class="dropdown_input-container">
+              <input
+                type="text"
+                class="dropdown_input"
+                id="ustensiles"
+                placeholder="Ustensiles"
+              />
+              <img src="img/arrow.svg" alt="downwards facing arrow" />
+            </div>
+            <ul class="dropdown_list hidden" id="ustenstils-list"></ul>
           </div>
         </div>
       </div>

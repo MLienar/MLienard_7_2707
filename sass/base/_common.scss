@@ -22,6 +22,12 @@ body {
   width: 1px;
 }
 
+.hidden {
+  opacity: 0;
+  display: none !important;
+  transition: all 0.5s ease-in-out;
+}
+
 .blue {
   background: $blue;
 }
