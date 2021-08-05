@@ -7,7 +7,7 @@ function buildPropertiesArray(cardArray, domArray, cardId) {
                 key: cardArray[i],
                 card: [ cardId ]
             }
-            domArray[cardArray[i]] = (arrayObject)
+            domArray[cardArray[i]] = arrayObject
         } else {
             domArray[cardArray[i]].card.push(cardId)
         }

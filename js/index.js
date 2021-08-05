@@ -1,8 +1,9 @@
 import { recettes as recipes } from "./recipes.js"
 import { galleryCard } from "./galleryCard.js"
-import { filterInit } from "./filterInit.js"
-import filterArrays from "./filterArrays.js"
+import { handleFilters } from "./filterInit.js"
 import { buildAllArrays } from "./buildAllArrays.js"
+import { typedFilters as filters } from './filterInit.js'
+import filterArrays from "./filterArrays.js"
 
 // Build properties lists
 
@@ -35,14 +36,12 @@ const ustensilsDOMList = document.getElementById("ustensils-list")
 
 function buildFilters(filterType, div) {
     for (const filter in propertiesArray[filterType]) {
-        console.log(filter);
         const filterDiv = document.createElement("li")
         filterDiv.classList.add("dropdown_list-item")
         filterDiv.innerText = filter
         div.appendChild(filterDiv)
     }
 }
-
 
 function allRecipesToArray() {
     let id = 0
@@ -67,28 +66,17 @@ allRecipesToArray()
 // Main Search
 
 const mainInput = document.getElementById("main-search")
-const filters = {
-    filterBeingTyped: '',
-    currentFilters: []
-}
+
 
 mainInput.addEventListener("keyup", (e) => {
-    const filter = filterInit(e)
-    if (e.keyCode === 13) {
-        if (!filters.currentFilters.includes(e.target.value)) {
-        filters.currentFilters.push(e.target.value)
+    filters.counter = e.target.value.length
+    if (filters.counter < 3) {
+        while(filters.typing.length) {
+            filters.typing.pop()
         }
-        e.target.value = ""
-        filters.filterBeingTyped = ""
-        const filteredCards = filterArrays(filters, allRecipeCards)
-        console.log(filteredCards);
-        refreshDOM(filteredCards)
-        return
-    }
-    if (filter) {
-        filters.filterBeingTyped = filter
-        const filteredCards = filterArrays(filters, allRecipeCards)
-        console.log(filteredCards)
-        refreshDOM(filteredCards)
+    } else {
+    const currentFilters = handleFilters(e)
+    const matchingCards = filterArrays(currentFilters, propertiesArray)
+    console.log(matchingCards);
     }
 })
