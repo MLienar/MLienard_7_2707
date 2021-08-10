@@ -13,6 +13,12 @@ const propertiesArray = {
     ustensils: [] 
 }
 
+const currentProperties = {
+    ingredients: [],
+    appliances: [],
+    ustensils: [] 
+}
+
 const allRecipeCards = []  
 
 // Build DOM Recipes
@@ -72,14 +78,11 @@ function buildFilters(currentProperties) {
 
 // store all recipes in an array
 function allRecipesToArray() {
-    let id = 0
     for (const recipe of recipes) {
         const card = new galleryCard(recipe)
         allRecipeCards[card.id] = card 
             // Add ingredients to page arrays
-        buildAllArrays(card.ingredients, propertiesArray.ingredients, card.id)
-        buildAllArrays(card.appliance, propertiesArray.appliances, card.id)
-        buildAllArrays(card.ustensils, propertiesArray.ustensils, card.id)
+        buildAllArrays(card, propertiesArray)
     }
     buildFilters(propertiesArray)
     refreshDOM(allRecipeCards)
@@ -91,10 +94,32 @@ allRecipesToArray()
 
 const mainInput = document.getElementById("main-search")
 
+function updateFiltersObject(currentRecipes) {
+    const filterDivLists = {
+        ingredients: [],
+        appliances: [],
+        ustensils: []
+    }
+    for (const recipe of currentRecipes) {
+        filterDivLists.appliances.push(recipe.appliance)
+        recipe.ingredients.forEach(ingredient => {
+            filterDivLists.ingredients.push(ingredient)
+        })
+        recipe.ustensils.forEach(ustensil => {
+            filterDivLists.ustensils.push(ustensil)
+        })
+    }
+    buildFilters(filterDivLists)
+}
+
 mainInput.addEventListener("keyup", (e) => {
     const currentFilter = handleFilters(e)
     if (filters.typing.length >= 3 || filters.finished.length > 0) {
         const matchingRecipes =  filterRecipes(currentFilter, allRecipeCards)
         refreshDOM(matchingRecipes)
+        for (const card of matchingRecipes) {
+            buildAllArrays(card, currentProperties)
+        }
+        buildFilters(currentProperties) 
     }
 })

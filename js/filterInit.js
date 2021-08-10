@@ -1,3 +1,5 @@
+import filterTagsCreator from "./filterTags.js"
+
 const filters = {
     finished : [],
     typing: ""
@@ -7,6 +9,7 @@ function startFiltering (e) {
   if (e.keyCode === 13) {
         if (!filters.finished.includes(e.target.value)) {
             filters.finished.push(e.target.value)
+            filterTagsCreator(e.target.value)
         }
         e.target.value = ""
         filters.typing = ""

@@ -1,7 +1,6 @@
 export default function filterRecipes (filters, recipes) {
     const matchingRecipes = []
     const flatFilters = [... filters.finished, filters.typing].filter( e => e)
-    console.log(flatFilters);
     const filterMatches = []
     for (const recipe of recipes) {
         for (let i = 0; i < flatFilters.length ; i ++) {

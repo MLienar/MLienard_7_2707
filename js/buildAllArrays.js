@@ -1,18 +1,20 @@
-// Build arrays containing all ingredients, appliances and ustenstils
-function buildPropertiesArray(cardArray, domArray, cardId) {
-    for (let i = 0; i < cardArray.length; i ++) {
-        const indexOfIngredient = domArray[cardArray[i]]
-        if (!indexOfIngredient) {
-            const arrayObject = {
-                key: cardArray[i],
-                card: [ cardId ]
-            }
-            domArray[cardArray[i]] = arrayObject
-        } else {
-            domArray[cardArray[i]].card.push(cardId)
-        }
+function buildPropertiesArray(card, array) {
+    const types = ["ingredients", "appliances", "ustensils"]
+    for (const type of types) {
+        for (let i = 0 ; i < card[type].length ; i ++) {
+            if (!array[type][i]) {
+                const arrayObject = {
+                    key: card[type][i],
+                    card: [ card.id ]
+                }
+                array[type][card[type][i]] = arrayObject 
+            } else {
+                array[type][i].card.push(card.id)
+        } 
     }
-    domArray.sort()
+    array[type].sort() 
+    // console.log(array);
+    }
 }
 
 export { buildPropertiesArray as buildAllArrays } 

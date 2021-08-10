@@ -1,7 +1,7 @@
 function GalleryCard(recipe) {
 
     this.ingredients = []
-    this.appliance = [ recipe.appliance.toLowerCase() ]
+    this.appliances = [ recipe.appliance.toLowerCase() ]
     this.ustensils = []
     this.description = recipe.description
     this.title = recipe.name
