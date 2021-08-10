@@ -1,33 +1,30 @@
-let itemsThatMatch = []
-let lastCounter = 0
-
-export default function filterArrays (filters, properties) {
-    const types = ['ingredients', 'appliances', 'ustensils']
-    if (lastCounter > filters.counter) {
-        console.log("yo");
-        itemsThatMatch = []
-    }
-    // Loop over the three types of properties
-    if (itemsThatMatch.length === 0) {
-        for (const type of types) {
-            // Loop over each item in each type
-            for (const item in properties[type]) {
-                // Add card number to array if property matches
-                if(properties[type][item].key.includes(filters.typing[filters.counter])) {
-                    itemsThatMatch.push(properties[type][item])
-                    console.log(type);
-                }
+export default function filterRecipes (filters, recipes) {
+    const matchingRecipes = []
+    const flatFilters = [... filters.finished, filters.typing].filter( e => e)
+    console.log(flatFilters);
+    const filterMatches = []
+    for (const recipe of recipes) {
+        for (let i = 0; i < flatFilters.length ; i ++) {
+            if (recipe.searchText.includes(flatFilters[i])) {
+                if (!filterMatches[i]) {
+                    filterMatches[i] = [ recipe.id ]
+                } else {
+                    filterMatches[i].push(recipe.id)
+                }     
             }
         }
-    } else {
-        itemsThatMatch.forEach(item => {
-            if (!item.key.includes(filters.typing[filters.counter])) {
-                itemsThatMatch.splice(item)
-            }
-        })
     }
-    lastCounter = filters.counter
-    return itemsThatMatch
+    // Check common number between arrays
+    const testArray = filterMatches.shift().filter(function(v) {
+        return filterMatches.every(function(a) {
+            return a.indexOf(v) !== -1
+        })
+    })
+    // add matching recipe cards to returned array
+    for (const number of testArray) {
+        matchingRecipes.push(recipes[number])
+    }
+    return matchingRecipes
 }   
    
   

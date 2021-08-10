@@ -1,23 +1,23 @@
 const filters = {
-    counter: 0,
-    lastCounter: 0,
     finished : [],
-    typing: []
+    typing: ""
 }
 
 function startFiltering (e) {
-  if (filters.lastCounter >= filters.counter) {
-      while (filters.lastCounter > filters.counter) {
-          filters.typing.splice(filters.lastCounter, 1)
-          filters.lastCounter --
-      }
-  }
   if (e.keyCode === 13) {
-        filters.finished.push(e.target.value)
+        if (!filters.finished.includes(e.target.value)) {
+            filters.finished.push(e.target.value)
+        }
         e.target.value = ""
+        filters.typing = ""
   }
-  filters.lastCounter = filters.counter  
-  filters.typing[filters.counter] = e.target.value
+  
+  if (e.target.value.length > 2) {
+    filters.typing = e.target.value.toLowerCase()
+  } else {
+    filters.typing = ""
+  }
+
   return filters
 }
 

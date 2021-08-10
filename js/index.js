@@ -3,61 +3,85 @@ import { galleryCard } from "./galleryCard.js"
 import { handleFilters } from "./filterInit.js"
 import { buildAllArrays } from "./buildAllArrays.js"
 import { typedFilters as filters } from './filterInit.js'
-import filterArrays from "./filterArrays.js"
+import filterRecipes from "./filterArrays.js"
 
 // Build properties lists
 
 const propertiesArray = {
     ingredients: [],
     appliances: [],
-    ustensils: []
+    ustensils: [] 
 }
 
-const allRecipeCards = []
-
+const allRecipeCards = []  
 
 // Build DOM Recipes
 const recipesContainer = document.querySelector("main")
 
 function refreshDOM(cardsArray) {
-    while(recipesContainer.length) {
-        recipesContainer.removeChild(recipesContainer[recipesContainer.length - 1])
+        while(recipesContainer.firstChild) {
+            recipesContainer.removeChild(recipesContainer.firstChild)
+        }
+    if (cardsArray.length > 0) {
+        for (const card of cardsArray) {
+            const recipeCard = card.buildCard()
+            recipesContainer.appendChild(recipeCard)
+        }
     }
-    for (const card of cardsArray) {
-        const recipeCard = card.buildCard()
-        recipesContainer.appendChild(recipeCard)
+    else {
+        console.log("no cards to show");
     }
 }
 
 // filters on DOM
-const ingredientsDOMList = document.getElementById("ingredients-list") 
-const appliancesDOMList = document.getElementById("appliances-list") 
-const ustensilsDOMList = document.getElementById("ustensils-list") 
+const ingredients = document.getElementById("ingredients-list") 
+const appliances = document.getElementById("appliances-list") 
+const ustensils = document.getElementById("ustensils-list") 
 
-function buildFilters(filterType, div) {
-    for (const filter in propertiesArray[filterType]) {
-        const filterDiv = document.createElement("li")
-        filterDiv.classList.add("dropdown_list-item")
-        filterDiv.innerText = filter
-        div.appendChild(filterDiv)
+function refreshDOMFilters(currentDOMFilters) {
+    for (const key in currentDOMFilters) {
+        const filterListDiv = document.getElementById(`${key}-list`)
+        while (filterListDiv.firstChild) {
+            filterListDiv.removeChild(filterListDiv.firstChild)
+        }
+        for (const div of currentDOMFilters[key]) {
+            filterListDiv.appendChild(div)
+        }
     }
 }
 
+// filters to object
+function buildFilters(currentProperties) {
+    const filterDivLists = {
+        ingredients: [],
+        appliances: [],
+        ustensils: []
+    }
+
+    for (const filterType in currentProperties) {
+        const type = filterType.toString()
+        for (const filter in currentProperties[type]) {
+            const filterDiv = document.createElement("li")
+            filterDiv.classList.add("dropdown_list-item")
+            filterDiv.innerText = filter
+            filterDivLists[type].push(filterDiv)
+        }
+    }
+    refreshDOMFilters(filterDivLists)
+}
+
+// store all recipes in an array
 function allRecipesToArray() {
     let id = 0
     for (const recipe of recipes) {
         const card = new galleryCard(recipe)
-        card.id = id
-        id ++
-        allRecipeCards.push(card) 
+        allRecipeCards[card.id] = card 
             // Add ingredients to page arrays
         buildAllArrays(card.ingredients, propertiesArray.ingredients, card.id)
         buildAllArrays(card.appliance, propertiesArray.appliances, card.id)
         buildAllArrays(card.ustensils, propertiesArray.ustensils, card.id)
     }
-    buildFilters("ingredients", ingredientsDOMList)
-    buildFilters("appliances", appliancesDOMList)
-    buildFilters("ustensils", ustensilsDOMList)
+    buildFilters(propertiesArray)
     refreshDOM(allRecipeCards)
 }
 
@@ -67,16 +91,10 @@ allRecipesToArray()
 
 const mainInput = document.getElementById("main-search")
 
-
 mainInput.addEventListener("keyup", (e) => {
-    filters.counter = e.target.value.length
-    if (filters.counter < 3) {
-        while(filters.typing.length) {
-            filters.typing.pop()
-        }
-    } else {
-    const currentFilters = handleFilters(e)
-    const matchingCards = filterArrays(currentFilters, propertiesArray)
-    console.log(matchingCards);
+    const currentFilter = handleFilters(e)
+    if (filters.typing.length >= 3 || filters.finished.length > 0) {
+        const matchingRecipes =  filterRecipes(currentFilter, allRecipeCards)
+        refreshDOM(matchingRecipes)
     }
 })

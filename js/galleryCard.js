@@ -6,14 +6,17 @@ function GalleryCard(recipe) {
     this.description = recipe.description
     this.title = recipe.name
     this.hide = false
-    this.id = 0
+    this.id = recipe.id - 1
+    this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + this.appliance
     
     recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient.ingredient.toLowerCase())
+        this.searchText += " " + ingredient.ingredient.toLowerCase()
     })
 
     recipe.ustensils.forEach(ustensil => {
         this.ustensils.push(ustensil.toLowerCase())
+        this.searchText += " " + ustensil.toLowerCase()
     })
     
     const createBlock = function (block) {
