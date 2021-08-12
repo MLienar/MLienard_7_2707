@@ -1,5 +1,5 @@
 import { recipes } from './index.js'
-import { fullSearch } from './kmpSearch.js'
+import { fullSearch } from './fullSearch.js'
 
 export default function filterRecipes (filters) {
     const matchingRecipes = []
@@ -9,10 +9,9 @@ export default function filterRecipes (filters) {
         for (const recipe of recipes) {
             const matchingIndexes = fullSearch(recipe, flatFilters)
             if (matchingIndexes) {
-                filterMatches.push(matchingIndexes)
+                filterMatches.push(matchingIndexes.id)
             }   
         }
-        console.log(filterMatches);
         // Check common number between arrays
         if (filterMatches.length === 0) {
             console.log("no matches");
@@ -27,6 +26,4 @@ export default function filterRecipes (filters) {
     } else {
         return recipes
     }
-}   
-   
-  
+}  
