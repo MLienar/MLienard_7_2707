@@ -16,6 +16,7 @@ export default function filterRecipes (filters) {
                 }
             }
         }
+        
         // Check common number between arrays
         if (filterMatches.length === 0) {
             console.log("no matches");
