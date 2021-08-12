@@ -68,6 +68,11 @@ function buildFilters(currentProperties) {
                 const value = e.target.innerText.toLowerCase()
                 if (!filters.finished.includes(value)) {
                     filters.finished.push(value)
+                    for (const input of preciseInputs) {
+                        if (input.value) {
+                            input.value = ""
+                        }
+                    } 
                 }
                 mainFilterFunction(filters)  
                 filterTagsCreator(value)
@@ -103,6 +108,7 @@ function mainFilterFunction(currentFilter) {
         ustensils: [] 
     }
     const matchingRecipes =  filterRecipes(currentFilter, allRecipeCards)
+    console.log(matchingRecipes);
     refreshDOM(matchingRecipes)
     for (const card of matchingRecipes) {
         buildAllArrays(card, currentProperties)
