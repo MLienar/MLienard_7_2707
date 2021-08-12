@@ -1,20 +1,32 @@
 .dropdowns-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
   position: absolute;
   top: 12vh;
+  &_box {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    @media screen and (max-width: 799px) {
+      flex-flow: row wrap;
+    }
+  }
   .dropdown {
     padding: 20px;
     color: white;
     font-family: "Lato", sans-serif;
     font-weight: 700;
     margin-right: 1vw;
+    margin-top: 1vh;
     border-radius: 5px;
-    &:hover .hidden {
-      display: grid !important;
-      opacity: 1;
+    @media screen and (min-width: 800px) {
+      &:hover .hidden {
+        display: grid !important;
+        opacity: 1;
+      }
     }
     &_input-container {
       max-width: 100%;
@@ -64,6 +76,7 @@
         margin: 0.5vh 1vw 0.5vh 0;
         font-weight: 400;
         margin-right: 5vh;
+        cursor: pointer;
         &::first-letter {
           text-transform: capitalize;
         }
@@ -86,4 +99,9 @@
     rgba(237, 100, 84, 0) 0%,
     rgba(237, 100, 84, 1) 100%
   );
+}
+
+.dropdown input:focus .hidden  {
+  display: grid !important;
+  opacity: 1;
 }

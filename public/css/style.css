@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -195,15 +196,19 @@ body {
 }
 
 .blue {
-  background: #3282F7;
+  background: #3282F7 !important;
 }
 
 .green {
-  background: #68D9A4;
+  background: #68D9A4 !important;
 }
 
 .orange {
-  background: #ED6454;
+  background: #ED6454 !important;
+}
+
+.grey {
+  background: #C7BEBE !important;
 }
 
 header {
@@ -253,6 +258,54 @@ header .site-logo img {
   border: none;
   outline: none;
 }
+.search_current-tags {
+  min-width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: flex-start;
+}
+.search_tag {
+  padding: 10px 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border-radius: 5px;
+  margin: 5px 5px 5px 0;
+  background: #3282F7;
+  color: white;
+  cursor: pointer;
+}
+.search_tag p {
+  color: white;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: clamp(13px, 0.8rem + 0.5vh, 17px);
+}
+.search_tag p::first-letter {
+  text-transform: capitalize;
+}
+.search_tag .close {
+  width: 17px;
+  height: 17px;
+  border: 2px solid white;
+  border-radius: 50px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search_tag .close::after, .search_tag .close::before {
+  content: "";
+  height: 8px;
+  width: 2px;
+  background: white;
+}
+.search_tag .close::after {
+  transform: rotate(45deg) translateY(1px);
+}
+.search_tag .close::before {
+  transform: rotate(-45deg) translateY(1px);
+}
 
 main {
   margin-top: 17vh;
@@ -268,6 +321,11 @@ main {
 @media screen and (max-width: 700px) {
   main {
     grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media screen and (max-width: 538px) {
+  main {
+    margin-top: 22vh;
   }
 }
 
@@ -346,11 +404,22 @@ main {
 
 .dropdowns-container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: flex-start;
   position: absolute;
   top: 12vh;
+}
+.dropdowns-container_box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media screen and (max-width: 799px) {
+  .dropdowns-container_box {
+    flex-flow: row wrap;
+  }
 }
 .dropdowns-container .dropdown {
   padding: 20px;
@@ -358,11 +427,14 @@ main {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   margin-right: 1vw;
+  margin-top: 1vh;
   border-radius: 5px;
 }
-.dropdowns-container .dropdown:hover .hidden {
-  display: grid !important;
-  opacity: 1;
+@media screen and (min-width: 800px) {
+  .dropdowns-container .dropdown:hover .hidden {
+    display: grid !important;
+    opacity: 1;
+  }
 }
 .dropdowns-container .dropdown_input-container {
   max-width: 100%;
@@ -413,6 +485,7 @@ main {
   margin: 0.5vh 1vw 0.5vh 0;
   font-weight: 400;
   margin-right: 5vh;
+  cursor: pointer;
 }
 .dropdowns-container .dropdown_list-item::first-letter {
   text-transform: capitalize;
@@ -424,6 +497,11 @@ main {
 
 .orange ul:after {
   background: linear-gradient(180deg, rgba(237, 100, 84, 0) 0%, #ed6454 100%);
+}
+
+.dropdown input:focus .hidden  {
+  display: grid !important;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */

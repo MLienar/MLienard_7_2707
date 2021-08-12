@@ -4,16 +4,12 @@ import { handleFilters } from "./filterInit.js"
 import { buildAllArrays } from "./buildAllArrays.js"
 import { typedFilters as filters } from './filterInit.js'
 import filterRecipes from "./filterArrays.js"
+import preciseFilter from "./preciseFilter.js"
+import filterTagsCreator from "./filterTags.js"
 
 // Build properties lists
 
 const propertiesArray = {
-    ingredients: [],
-    appliances: [],
-    ustensils: [] 
-}
-
-const currentProperties = {
     ingredients: [],
     appliances: [],
     ustensils: [] 
@@ -40,10 +36,6 @@ function refreshDOM(cardsArray) {
 }
 
 // filters on DOM
-const ingredients = document.getElementById("ingredients-list") 
-const appliances = document.getElementById("appliances-list") 
-const ustensils = document.getElementById("ustensils-list") 
-
 function refreshDOMFilters(currentDOMFilters) {
     for (const key in currentDOMFilters) {
         const filterListDiv = document.getElementById(`${key}-list`)
@@ -70,6 +62,14 @@ function buildFilters(currentProperties) {
             const filterDiv = document.createElement("li")
             filterDiv.classList.add("dropdown_list-item")
             filterDiv.innerText = filter
+            filterDiv.addEventListener("click", (e) => {
+                const value = e.target.innerText.toLowerCase()
+                if (!filters.finished.includes(value)) {
+                    filters.finished.push(value)
+                }
+                mainFilterFunction(filters)  
+                filterTagsCreator(value)
+            })
             filterDivLists[type].push(filterDiv)
         }
     }
@@ -94,32 +94,49 @@ allRecipesToArray()
 
 const mainInput = document.getElementById("main-search")
 
-function updateFiltersObject(currentRecipes) {
-    const filterDivLists = {
+function mainFilterFunction(currentFilter) {
+    const currentProperties = {
         ingredients: [],
         appliances: [],
-        ustensils: []
+        ustensils: [] 
     }
-    for (const recipe of currentRecipes) {
-        filterDivLists.appliances.push(recipe.appliance)
-        recipe.ingredients.forEach(ingredient => {
-            filterDivLists.ingredients.push(ingredient)
-        })
-        recipe.ustensils.forEach(ustensil => {
-            filterDivLists.ustensils.push(ustensil)
-        })
+    const matchingRecipes =  filterRecipes(currentFilter, allRecipeCards)
+    refreshDOM(matchingRecipes)
+    for (const card of matchingRecipes) {
+        buildAllArrays(card, currentProperties)
     }
-    buildFilters(filterDivLists)
+    buildFilters(currentProperties) 
 }
 
 mainInput.addEventListener("keyup", (e) => {
     const currentFilter = handleFilters(e)
-    if (filters.typing.length >= 3 || filters.finished.length > 0) {
-        const matchingRecipes =  filterRecipes(currentFilter, allRecipeCards)
-        refreshDOM(matchingRecipes)
-        for (const card of matchingRecipes) {
-            buildAllArrays(card, currentProperties)
-        }
-        buildFilters(currentProperties) 
-    }
+    mainFilterFunction(currentFilter)
 })
+
+// Precise Search
+
+const preciseInputs = document.querySelectorAll(".dropdown_input")
+preciseInputs.forEach(input => {
+    input.addEventListener('keyup', (e) => {
+        const preciseTag = preciseFilter(e)
+        buildFilters(preciseTag)
+    })
+})
+
+preciseInputs.forEach(input => {
+    input.addEventListener("focus", (e) => {
+        const itemList = e.path[2].children[1]
+        itemList.classList.remove("hidden")
+    })
+})
+
+preciseInputs.forEach(input => {
+    input.addEventListener("focusout", (e) => {
+        const itemList = e.path[2].children[1]
+        itemList.classList.add("hidden")
+    })
+})
+
+export { allRecipeCards as recipes }
+export { mainFilterFunction as filterFunction } 
+export { propertiesArray as tagList }

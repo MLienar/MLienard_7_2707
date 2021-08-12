@@ -27,4 +27,53 @@
       }
     }
   }
+  &_current-tags {
+    min-width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-items: flex-start;
+  }
+  &_tag {
+    padding: 10px 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-radius: 5px;
+    margin: 5px 5px 5px 0;
+    background: $blue;
+    color: white;
+    cursor: pointer;
+    p {
+      color: white;
+      font-family: "Lato", sans-serif;
+      font-weight: 700;
+      font-size: clamp(13px, 0.8rem + 0.5vh, 17px);
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+    .close {
+      width: 17px;
+      height: 17px;
+      border: 2px solid white;
+      border-radius: 50px;
+      margin-left: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::after,
+      &::before {
+        content: "";
+        height: 8px;
+        width: 2px;
+        background: white;
+      }
+      &::after {
+        transform: rotate(45deg) translateY(1px);
+      }
+      &::before {
+        transform: rotate(-45deg) translateY(1px);
+      }
+    }
+  }
 }

@@ -29,11 +29,14 @@ body {
 }
 
 .blue {
-  background: $blue;
+  background: $blue !important;
 }
 .green {
-  background: $green;
+  background: $green !important;
 }
 .orange {
-  background: $orange;
+  background: $orange !important;
+}
+.grey {
+  background: $gray-dark !important;
 }

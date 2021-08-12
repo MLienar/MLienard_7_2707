@@ -8,8 +8,8 @@ const filters = {
 function startFiltering (e) {
   if (e.keyCode === 13) {
         if (!filters.finished.includes(e.target.value)) {
-            filters.finished.push(e.target.value)
-            filterTagsCreator(e.target.value)
+            filters.finished.push(e.target.value.toLowerCase())
+            filterTagsCreator(e.target.value.toLowerCase())
         }
         e.target.value = ""
         filters.typing = ""
