@@ -12,4 +12,8 @@ main {
   @media screen and (max-width: 538px) {
     margin-top: 22vh;
   }
+  h3 {
+    font-family: "Lato", sans-serif;
+    color: $gray-dark;
+  }
 }

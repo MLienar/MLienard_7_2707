@@ -328,6 +328,10 @@ main {
     margin-top: 22vh;
   }
 }
+main h3 {
+  font-family: "Lato", sans-serif;
+  color: #C7BEBE;
+}
 
 .recipe-card {
   width: 100%;

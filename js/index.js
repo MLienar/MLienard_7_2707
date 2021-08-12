@@ -21,9 +21,9 @@ const allRecipeCards = []
 const recipesContainer = document.querySelector("main")
 
 function refreshDOM(cardsArray) {
-        while(recipesContainer.firstChild) {
-            recipesContainer.removeChild(recipesContainer.firstChild)
-        }
+    while(recipesContainer.firstChild) {
+        recipesContainer.removeChild(recipesContainer.firstChild)
+    }
     if (cardsArray.length > 0) {
         for (const card of cardsArray) {
             const recipeCard = card.buildCard()
@@ -31,7 +31,9 @@ function refreshDOM(cardsArray) {
         }
     }
     else {
-        console.log("no cards to show");
+        const noRecipesDiv = document.createElement("h3")
+        noRecipesDiv.innerText = "Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc."
+        recipesContainer.appendChild(noRecipesDiv)
     }
 }
 
