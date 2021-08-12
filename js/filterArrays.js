@@ -9,12 +9,8 @@ export default function filterRecipes (filters) {
         for (const recipe of recipes) {
             const matchingIndexes = fullSearch(recipe, flatFilters)
             if (matchingIndexes) {
-                if (!filterMatches[matchingIndexes]) {
-                    filterMatches[matchingIndexes] = [ recipe.id ]
-                } else {
-                    filterMatches[matchingIndexes].push(recipe.id)
-                }                     
-            }
+                filterMatches.push(matchingIndexes)
+            }   
         }
         console.log(filterMatches);
         // Check common number between arrays
@@ -23,13 +19,8 @@ export default function filterRecipes (filters) {
             const emptyArray = []
             return emptyArray
         }
-        const testArray = filterMatches.shift().filter(function(v) {
-            return filterMatches.every(function(a) {
-                return a.indexOf(v) !== -1
-            })
-        })
         // add matching recipe cards to returned array
-        for (const number of testArray) {
+        for (const number of filterMatches) {
             matchingRecipes.push(recipes[number])
         }
         return matchingRecipes
