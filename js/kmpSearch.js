@@ -1,46 +1,41 @@
-function longestPrefix(string) {
-    let table = new Array(string.length);
-    let maxPrefix = 0;
-    table[0] = 0;
-    for (let i = 1; i < string.length; i++) {
-      while (maxPrefix > 0 && string.charAt(i) !== string.charAt(maxPrefix)) {
-        maxPrefix = table[maxPrefix - 1];
-      }
-       if (string.charAt(maxPrefix) === string.charAt(i)) {
-        maxPrefix++;
-      }
-      table[i] = maxPrefix;
+function arraysInclude(array, pattern) {
+    for (const item of array) {
+        if (item.includes(pattern)) {
+            return true
+        } else {
+            continue
+        }
     }
-    return table;
-  }
-  
-  function kmpMatching(string, pattern) {
+}
 
-    const prefixes = longestPrefix(pattern);
-    let matches = [];
-    
-    let j = 0;
-    let i = 0;
-
-    while (i < string.length) {
-      if (string.charAt(i) === pattern.charAt(j)) {
-        i++;
-        j++;
-      }
-
-      if (j === pattern.length) {
-        matches.push(i-j);
-        j = prefixes[j-1];
-      }
-      else if (string.charAt(i) !== pattern.charAt(j)) {
-          if (j !== 0) {
-              j = prefixes[j-1];
-          } else {
-              i++;
-          }
-      }
+function recipeSearch(recipe, patterns) {
+    let includes = false
+    for (let i  = 0; i < patterns.length; i ++) {
+        if (recipe.title.includes(patterns[i])) {
+            includes = true
+            continue
+        } else if (recipe.appliances[0].includes(patterns[i])) {
+            includes = true
+            continue
+        } else if (recipe.description.includes(patterns[i])) {
+            includes = true
+            continue
+        } else if (arraysInclude(recipe.ingredients, patterns[i])) {
+            includes = true
+            continue
+        } else if (arraysInclude(recipe.ustensils, patterns[i])) {
+            includes = true
+            continue
+        } else {
+            includes = false 
+            break
+        }
     }
-    return matches;
-  }
+    if (includes) {
+        return recipe.id
+    } else {
+        return false
+    }
+}
 
-  export { kmpMatching as kmpSearch }
+  export { recipeSearch as fullSearch }

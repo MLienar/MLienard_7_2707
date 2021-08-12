@@ -1,25 +1,22 @@
 import { recipes } from './index.js'
-import { kmpSearch } from './kmpSearch.js'
+import { fullSearch } from './kmpSearch.js'
 
 export default function filterRecipes (filters) {
     const matchingRecipes = []
-    const flatFilters = [... filters.finished, filters.typing].filter( e => e)
+    const flatFilters = [... filters.finished, filters.typing].filter( e => e )
     const filterMatches = []
     if (filters.typing.length >= 3 || filters.finished.length > 0) {
         for (const recipe of recipes) {
-            for (let i = 0; i < flatFilters.length ; i ++) {
-                const matchingIndexes = kmpSearch(recipe.searchText, flatFilters[i])
-                if (matchingIndexes.length > 0) {
-                    if (!filterMatches[i]) {
-                        filterMatches[i] = [ recipe.id ]
-                    } else {
-                        filterMatches[i].push(recipe.id)
-                    }     
-                }
-                   
+            const matchingIndexes = fullSearch(recipe, flatFilters)
+            if (matchingIndexes) {
+                if (!filterMatches[matchingIndexes]) {
+                    filterMatches[matchingIndexes] = [ recipe.id ]
+                } else {
+                    filterMatches[matchingIndexes].push(recipe.id)
+                }                     
             }
         }
-        
+        console.log(filterMatches);
         // Check common number between arrays
         if (filterMatches.length === 0) {
             console.log("no matches");
