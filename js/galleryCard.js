@@ -7,7 +7,7 @@ function GalleryCard(recipe) {
     this.title = recipe.name
     this.hide = false
     this.id = recipe.id - 1
-    this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + this.appliance
+    this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + recipe.appliance.toLowerCase()
     
     recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient.ingredient.toLowerCase())

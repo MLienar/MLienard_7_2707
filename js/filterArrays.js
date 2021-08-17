@@ -26,4 +26,4 @@ export default function filterRecipes (filters) {
     } else {
         return recipes
     }
-}  
+}   
