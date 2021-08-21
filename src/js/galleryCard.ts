@@ -26,7 +26,7 @@ class Recipe {
         this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + recipe.appliance.toLowerCase()
 
         recipe.ingredients.forEach(ingredient => {
-            this.ingredients.push(ingredient.ingredient.toLowerCase())
+            this.ingredients.push(ingredient)
             this.searchText += " " + ingredient.ingredient.toLowerCase()
         })
     
@@ -136,7 +136,6 @@ class Recipe {
             class: "_ingredients"
         }
         const ingredientsContainer = this.createBlock(div)
-
         const cardIngredients = []
         for (const ingredient of this.ingredients) {
             const name = {
@@ -145,7 +144,7 @@ class Recipe {
                 content: ingredient.ingredient
             }
             
-            cardIngredients.push(ingredient.ingredient)
+            cardIngredients.push(ingredient.ingredient.toLowerCase())
 
             const container = {
                 type: "p",
@@ -156,10 +155,8 @@ class Recipe {
             const nameBlock = this.createBlock(name)
 
             ingredientContainer.appendChild(nameBlock)
-            console.log("top");
             
             if (ingredient.quantity) {
-                
                 const quantity = {
                     type: "span",
                     class: "_ingredient--quantity",
@@ -171,7 +168,6 @@ class Recipe {
                 }
                 const quantityBlock = this.createBlock(quantity)
                 ingredientContainer.appendChild(quantityBlock)
-                console.log(ingredientsContainer);
                 
             }            
             ingredientsContainer.appendChild(ingredientContainer)

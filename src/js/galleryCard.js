@@ -14,7 +14,7 @@ var Recipe = /** @class */ (function () {
         this.id = recipe.id - 1;
         this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + recipe.appliance.toLowerCase();
         recipe.ingredients.forEach(function (ingredient) {
-            _this.ingredients.push(ingredient.ingredient.toLowerCase());
+            _this.ingredients.push(ingredient);
             _this.searchText += " " + ingredient.ingredient.toLowerCase();
         });
         recipe.ustensils.forEach(function (ustensil) {
@@ -119,7 +119,7 @@ var Recipe = /** @class */ (function () {
                 "class": "_ingredient--name",
                 content: ingredient.ingredient
             };
-            cardIngredients.push(ingredient.ingredient);
+            cardIngredients.push(ingredient.ingredient.toLowerCase());
             var container = {
                 type: "p",
                 "class": "_ingredient"
@@ -127,7 +127,6 @@ var Recipe = /** @class */ (function () {
             var ingredientContainer = this.createBlock(container);
             var nameBlock = this.createBlock(name_1);
             ingredientContainer.appendChild(nameBlock);
-            console.log("top");
             if (ingredient.quantity) {
                 var quantity = {
                     type: "span",
@@ -139,7 +138,6 @@ var Recipe = /** @class */ (function () {
                 }
                 var quantityBlock = this.createBlock(quantity);
                 ingredientContainer.appendChild(quantityBlock);
-                console.log(ingredientsContainer);
             }
             ingredientsContainer.appendChild(ingredientContainer);
         }

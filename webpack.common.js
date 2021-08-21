@@ -1,14 +1,9 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
   entry: './src/index.ts',
   mode: 'development',
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Les Petits Plats',
-    }),
-  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -29,7 +24,17 @@ module.exports = {
             use: 'ts-loader',
             exclude: /node_modules/,
           },
+          {
+              test: /\.html$/,
+              use: {
+                  loader: 'html-loader',
+                  options: {
+                      sources: true
+                  }
+              }
+          },
       ],
+
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
