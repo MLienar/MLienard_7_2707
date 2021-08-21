@@ -1,11 +1,28 @@
 {
-  "name": "fisheye",
+  "name": "LesPetitsPlats",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "sass": "sass --watch ./sass/main.scss:./public/css/style.css"
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "test": "echo 'Error: no test specified' && exit 1",
+    "tsc": "tsc src/index.ts",
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --open --config webpack.dev.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "sass": "^1.38.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.0.0",
+    "webpack-merge": "^5.8.0"
+  }
 }
