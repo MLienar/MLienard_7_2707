@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les Petits Plats</title>
+  </head>
+  <body>
+    <header>
+      <div class="site-logo">
+        <img src="./img/logo.svg" alt="Les Petits Plats Logo" />
+        <h1>Les petits plats</h1>
+      </div>
+      <div class="search">
+        <div class="search_main-bar">
+          <input
+            type="text"
+            id="main-search"
+            placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette"
+          />
+          <img src="img/search.svg" alt="magnifying glass logo" />
+        </div>
+        <div class="dropdowns-container">
+          <ul class="search_current-tags"></ul>
+          <div class="dropdowns-container_box">
+            <div class="dropdown blue">
+              <div class="dropdown_input-container">
+                <input
+                  type="text"
+                  class="dropdown_input"
+                  id="ingredients"
+                  placeholder="Ingredients"
+                />
+                <img src="img/arrow.svg" alt="downwards facing arrow" />
+              </div>
+              <ul class="dropdown_list hidden" id="ingredients-list"></ul>
+            </div>
+            <div class="dropdown green">
+              <div class="dropdown_input-container">
+                <input
+                  type="text"
+                  class="dropdown_input"
+                  id="appliances"
+                  placeholder="Appareil"
+                />
+                <img src="img/arrow.svg" alt="downwards facing arrow" />
+              </div>
+              <ul class="dropdown_list hidden" id="appliances-list"></ul>
+            </div>
+            <div class="dropdown orange">
+              <div class="dropdown_input-container">
+                <input
+                  type="text"
+                  class="dropdown_input"
+                  id="ustensils"
+                  placeholder="Ustensiles"
+                />
+                <img src="img/arrow.svg" alt="downwards facing arrow" />
+              </div>
+              <ul class="dropdown_list hidden" id="ustensils-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main></main>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
