@@ -1,16 +1,19 @@
-function GalleryCard(recipe) {
-
+export default class GalleryCard {
+    constructor(recipe) {
     this.ingredients = []
+    this.ingredientObjects = []
     this.appliances = [ recipe.appliance.toLowerCase() ]
     this.ustensils = []
     this.description = recipe.description
     this.title = recipe.name
+    this.time = recipe.time
     this.hide = false
     this.id = recipe.id - 1
     this.searchText = this.title.toLowerCase() + ' ' + this.description.toLowerCase() + ' ' + recipe.appliance.toLowerCase()
     
     recipe.ingredients.forEach(ingredient => {
         this.ingredients.push(ingredient.ingredient.toLowerCase())
+        this.ingredientObjects.push(ingredient)
         this.searchText += " " + ingredient.ingredient.toLowerCase()
     })
 
@@ -18,8 +21,9 @@ function GalleryCard(recipe) {
         this.ustensils.push(ustensil.toLowerCase())
         this.searchText += " " + ustensil.toLowerCase()
     })
-    
-    const createBlock = function (block) {
+    }
+
+    createBlock (block) {
         const createdBlock = document.createElement(block.type)
         createdBlock.classList.add(`recipe-card${block.class}`)
         if (block.content) {
@@ -28,14 +32,14 @@ function GalleryCard(recipe) {
         return createdBlock
     }
 
-    const buildContainer = function (container, blocks) {
+    buildContainer (container, blocks) {
         for (const block of blocks) {
             container.appendChild(block)
         }
         return container
     }
 
-    this.cardContainer = function () {
+    cardContainer () {
         const div = {
             type: "div",
             class: ""
@@ -43,43 +47,43 @@ function GalleryCard(recipe) {
         if (this.hide) {
             div.class = "hidden"
         }
-        const card = createBlock(div)
+        const card = this.createBlock(div)
         return card
     } 
 
-    const cardInfoPart = function () {
+    cardInfoPart () {
         const div = {
             type: "div",
             class: "_info"
         }
-        const infoBlock = createBlock(div)
+        const infoBlock = this.createBlock(div)
         return infoBlock
     }
 
-    const cardImgPart = function () {
+    cardImgPart () {
         const div = {
             type: "div",
             class: "_image"
         }
-        const imageBlock = createBlock(div)
+        const imageBlock = this.createBlock(div)
         return imageBlock
     }
 
-    const cardTitle = function () {
+    cardTitle () {
         const titleDiv = {
             type: "h2",
             class: "_title",
-            content: recipe.name
+            content: this.title
         }
-        const title = createBlock(titleDiv)
+        const title = this.createBlock(titleDiv)
         return title
     }
 
-    const cardTime = function () {
+    cardTime () {
         const time = {
             type: "p",
             class: "_time",
-            content: `${recipe.time} min`
+            content: `${this.time} min`
         }
 
         const div = {
@@ -91,36 +95,36 @@ function GalleryCard(recipe) {
         clockImg.setAttribute('src', "img/clock.svg")
         clockImg.setAttribute('alt', "Clock")
 
-        const timeDiv = createBlock(time)
+        const timeDiv = this.createBlock(time)
         const timeBlock = [ clockImg, timeDiv ]
-        const container = createBlock(div)
-        const timeContainer = buildContainer(container, timeBlock)
+        const container = this.createBlock(div)
+        const timeContainer = this.buildContainer(container, timeBlock)
         return timeContainer
     }
 
-    const cardInstructions = function () {
+    cardInstructions () {
         const instructions = {
             type: "p",
             class: "_instructions",
-            content: recipe.description
+            content: this.description
         }
         if (instructions.content.length > 190) {
             instructions.content = instructions.content.substring(0, 190)
             instructions.content += " ..."
         }
-        const instructionsBlock = createBlock(instructions)
+        const instructionsBlock = this.createBlock(instructions)
         return instructionsBlock
     }
 
-    const cardIngredients = function () {
+    cardIngredients () {
         const div = {
             type: "div",
             class: "_ingredients"
         }
-        const ingredientsContainer = createBlock(div)
+        const ingredientsContainer = this.createBlock(div)
 
         const cardIngredients = []
-        for (const ingredient of recipe.ingredients) {
+        for (const ingredient of this.ingredientObjects) {
             const name = {
                 type: "span",
                 class: "_ingredient--name",
@@ -139,14 +143,14 @@ function GalleryCard(recipe) {
                 quantity.content += ' ' + ingredient.unit
             }
 
-            const nameBlock = createBlock(name)
-            const quantityBlock = createBlock(quantity)
+            const nameBlock = this.createBlock(name)
+            const quantityBlock = this.createBlock(quantity)
             
             const container = {
                 type: "p",
                 class: "_ingredient"
             }
-            const ingredientContainer = createBlock(container)
+            const ingredientContainer = this.createBlock(container)
            
             ingredientContainer.appendChild(nameBlock)
             ingredientContainer.appendChild(quantityBlock)
@@ -156,28 +160,28 @@ function GalleryCard(recipe) {
         return ingredientsContainer
     }
 
-    const mainPartBuilder = function (position, details) {
+    mainPartBuilder (position, details) {
         const container = {
             type: "div",
             class: position
         }
-        const div = createBlock(container)
-        const mainPart = buildContainer(div, details)
+        const div = this.createBlock(container)
+        const mainPart = this.buildContainer(div, details)
         return mainPart
     }
 
-    this.buildCard = function () {
+    buildCard () {
         const card = this.cardContainer()
-        const infoContainer = cardInfoPart()
-        const imgContainer = cardImgPart()
-        const ingredients = cardIngredients()
-        const title = cardTitle()
-        const instructions = cardInstructions()
-        const time = cardTime();
+        const infoContainer = this.cardInfoPart()
+        const imgContainer = this.cardImgPart()
+        const ingredients = this.cardIngredients()
+        const title = this.cardTitle()
+        const instructions = this.cardInstructions()
+        const time = this.cardTime();
         const topPartDetails = [title, time]
         const bottomPartDetails = [ingredients, instructions]
-        const topPart = mainPartBuilder("_top", topPartDetails)
-        const bottomPart = mainPartBuilder("_bottom", bottomPartDetails)
+        const topPart = this.mainPartBuilder("_top", topPartDetails)
+        const bottomPart = this.mainPartBuilder("_bottom", bottomPartDetails)
         infoContainer.appendChild(topPart)
         infoContainer.appendChild(bottomPart)
         card.appendChild(imgContainer)
