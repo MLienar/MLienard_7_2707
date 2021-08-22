@@ -495,14 +495,6 @@ main h3 {
   text-transform: capitalize;
 }
 
-.blue ul:after {
-  background: linear-gradient(180deg, rgba(50, 130, 247, 0) 0%, #3282f7 100%);
-}
-
-.orange ul:after {
-  background: linear-gradient(180deg, rgba(237, 100, 84, 0) 0%, #ed6454 100%);
-}
-
 .dropdown input:focus .hidden  {
   display: grid !important;
   opacity: 1;

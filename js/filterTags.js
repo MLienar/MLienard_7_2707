@@ -1,8 +1,9 @@
 import { typedFilters } from "./filterInit.js"
-import { filterFunction } from "./index.js"
 import { tagList } from "./index.js"
+import FiltersHandler from "./filtersHandler.js"
 
 export default function filterTagsCreator (tag) {
+    const filtersHandler = new FiltersHandler()
     let tagType = ""
     for (const type in tagList) {
         for (const item in tagList[type]) {
@@ -32,7 +33,7 @@ export default function filterTagsCreator (tag) {
     searchTag.addEventListener("click", (e) => {
         typedFilters.finished.splice(e.target.value, 1)
         searchTag.remove()
-        filterFunction(typedFilters)
+        filtersHandler.mainFilterFunction(typedFilters)
     })
     tagsContainer.appendChild(searchTag)
 }

@@ -13,7 +13,6 @@ function buildPropertiesArray(card, array) {
         } 
     }
     array[type].sort() 
-    // console.log(array);
     }
 }
 

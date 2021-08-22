@@ -85,22 +85,6 @@
   }
 }
 
-.blue ul:after {
-  background: linear-gradient(
-    180deg,
-    rgba(50, 130, 247, 0) 0%,
-    rgba(50, 130, 247, 1) 100%
-  );
-}
-
-.orange ul:after {
-  background: linear-gradient(
-    180deg,
-    rgba(237, 100, 84, 0) 0%,
-    rgba(237, 100, 84, 1) 100%
-  );
-}
-
 .dropdown input:focus .hidden  {
   display: grid !important;
   opacity: 1;

@@ -14,13 +14,11 @@ function startFiltering (e) {
         e.target.value = ""
         filters.typing = ""
   }
-  
-  if (e.target.value.length > 2) {
-    filters.typing = e.target.value.toLowerCase()
-  } else {
+  if (e.target.value.length < 3) { 
     filters.typing = ""
+    return filters
   }
-
+  filters.typing = e.target.value.toLowerCase()
   return filters
 }
 
